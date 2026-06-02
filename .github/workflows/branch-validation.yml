@@ -13,5 +13,5 @@ jobs:
 
       - name: Validate package name
         run: |
-          chmod +x .github/scripts/validate-package-name.sh
-          .github/scripts/validate-package-name.sh
+          chmod +x .github/scripts/validate-branch-name.sh
+          .github/scripts/validate-branch-name.sh
