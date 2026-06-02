@@ -2,18 +2,21 @@
 
 set -euo pipefail
 
-PACKAGE_NAME=$(jq -r '.name' package.json)
+BRANCH_NAME="$1"
 
-PATTERN='^@[a-z0-9-]+/[a-z0-9-]+$'
+PATTERN='^(feature|bugfix|hotfix)/[a-zA-Z0-9._-]+$'
 
-echo "Package name: $PACKAGE_NAME"
+echo "Checking branch name: $BRANCH_NAME"
 
-if [[ "$PACKAGE_NAME" =~ $PATTERN ]]; then
-    echo "✅ Valid package name"
+if [[ "$BRANCH_NAME" =~ $PATTERN ]]; then
+    echo "✅ Valid branch name: $BRANCH_NAME"
     exit 0
 else
-    echo "❌ Invalid package name: $PACKAGE_NAME"
-    echo "Expected format:"
-    echo "  @company/package-name"
+    echo "❌ Invalid branch name: $BRANCH_NAME"
+    echo ""
+    echo "Allowed formats:"
+    echo "  feature/<description>"
+    echo "  bugfix/<description>"
+    echo "  hotfix/<description>"
     exit 1
 fi

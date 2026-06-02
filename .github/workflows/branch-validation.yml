@@ -1,17 +1,21 @@
-name: Package Name Validation
+name: Branch Name Validation
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
-  validate-package:
+  validate-branch:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Validate package name
+      - name: Validate Branch Name
         run: |
           chmod +x .github/scripts/validate-branch-name.sh
-          .github/scripts/validate-branch-name.sh
+          .github/scripts/validate-branch-name.sh "${{ github.head_ref }}"
