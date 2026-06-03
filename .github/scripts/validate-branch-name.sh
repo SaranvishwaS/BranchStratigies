@@ -8,6 +8,7 @@ PATTERN='^(feature|bugfix|hotfix)/[a-zA-Z0-9._-]+$'
 
 echo "Checking branch name: $BRANCH_NAME"
 
+
 if [[ "$BRANCH_NAME" =~ $PATTERN ]]; then
     echo "✅ Valid branch name: $BRANCH_NAME"
     exit 0
@@ -20,5 +21,4 @@ else
     echo "  hotfix/<description>"
     exit 1
 fi
-
 
